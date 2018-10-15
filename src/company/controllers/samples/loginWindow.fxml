@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #696969;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="company.controllers.loginWindowController">
+   <children>
+      <AnchorPane layoutY="69.0" prefHeight="330.0" prefWidth="600.0" style="-fx-background-color: #fafafa;">
+         <children>
+            <TextField fx:id="login_field" layoutX="215.0" layoutY="123.0" promptText="Username" />
+            <PasswordField fx:id="password_field" layoutX="215.0" layoutY="165.0" promptText="Password" />
+            <Button fx:id="LogInButton" layoutX="267.0" layoutY="239.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="67.0" text="Log In" textFill="DIMGRAY">
+               <font>
+                  <Font name="Dyuthi" size="15.0" />
+               </font>
+            </Button>
+            <Text fill="DIMGRAY" layoutX="29.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Olifer's Multitool. Log in with existing account or create a new one.">
+               <font>
+                  <Font name="Dyuthi" size="17.0" />
+               </font>
+            </Text>
+            <CheckBox fx:id="RememberCheckbox" layoutX="215.0" layoutY="198.0" mnemonicParsing="false" text="Remember Me" textFill="DIMGRAY">
+               <font>
+                  <Font name="Dyuthi" size="15.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </AnchorPane>
+      <Label layoutX="231.0" layoutY="5.0" text="Multitool" textFill="#fafafa">
+         <font>
+            <Font name="Dyuthi" size="39.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="14.0" text="Build #203 29/9/18" textFill="#fafafa">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Button fx:id="SignUpButton" layoutX="488.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #00FF00; -fx-background-radius: 5; -fx-border-color: silver; -fx-border-radius: 5;" text="Sign Up" textFill="DIMGRAY">
+         <font>
+            <Font name="Dyuthi" size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #696969;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="company.controllers.SignUpController">
+    <children>
+        <AnchorPane layoutY="69.0" prefHeight="330.0" prefWidth="600.0" style="-fx-background-color: #fafafa;">
+         <children>
+            <TextField fx:id="firstnameField" layoutX="14.0" layoutY="31.0" prefHeight="26.0" prefWidth="200.0" promptText="First Name" />
+            <TextField fx:id="lastnameField" layoutX="386.0" layoutY="31.0" prefHeight="26.0" prefWidth="200.0" promptText="Last Name" />
+            <TextField fx:id="usernameField" layoutX="14.0" layoutY="172.0" prefHeight="26.0" prefWidth="200.0" promptText="Username" />
+            <TextField fx:id="emailField" layoutX="14.0" layoutY="212.0" prefHeight="26.0" prefWidth="200.0" promptText="E-Mail" />
+            <CheckBox fx:id="maleCheckBox" layoutX="214.0" layoutY="116.0" mnemonicParsing="false" selected="false" text="Male" textFill="DIMGRAY">
+               <font>
+                  <Font name="Dyuthi" size="18.0" />
+               </font></CheckBox>
+            <CheckBox fx:id="femaleCheckBox" layoutX="312.0" layoutY="116.0" mnemonicParsing="false" text="Female" textFill="DIMGRAY">
+               <font>
+                  <Font name="Dyuthi" size="18.0" />
+               </font></CheckBox>
+            <TextField fx:id="countryField" layoutX="14.0" layoutY="77.0" prefHeight="26.0" prefWidth="200.0" promptText="Country" />
+            <PasswordField fx:id="passwordField" layoutX="386.0" layoutY="172.0" prefHeight="26.0" prefWidth="200.0" promptText="Password" />
+            <PasswordField fx:id="confirmPasswordField" layoutX="386.0" layoutY="212.0" prefHeight="26.0" prefWidth="200.0" promptText="Confirm Password" />
+            <Button fx:id="signUpButton" layoutX="492.0" layoutY="267.0" mnemonicParsing="false" text="Sign Up" textFill="DIMGRAY">
+               <font>
+                  <Font name="Dyuthi" size="21.0" />
+               </font>
+            </Button>
+            <TextField fx:id="languageField" layoutX="386.0" layoutY="77.0" prefHeight="26.0" prefWidth="200.0" promptText="Language" />
+            <Button fx:id="CancelButton" cancelButton="true" layoutX="14.0" layoutY="267.0" mnemonicParsing="false" text="Cancel" textFill="DIMGRAY">
+               <font>
+                  <Font name="Dyuthi" size="21.0" />
+               </font>
+            </Button>
+         </children>
+        </AnchorPane>
+        <Label layoutX="231.0" layoutY="5.0" text="Multitool" textFill="#fafafa">
+            <font>
+                <Font name="Dyuthi" size="39.0" />
+            </font>
+        </Label>
+        <Label layoutX="14.0" layoutY="14.0" text="Build #203 29/9/18" textFill="#fafafa">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

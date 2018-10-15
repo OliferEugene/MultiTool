@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="100.0" prefWidth="259.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="company.controllers.UserUniqErrorController">
+    <children>
+        <Label layoutX="3.0" layoutY="14.0" text="User with this username or email" textFill="DIMGRAY">
+            <font>
+                <Font name="Dyuthi" size="19.0" />
+            </font>
+        </Label>
+      <Label layoutX="67.0" layoutY="50.0" text="is already exists." textFill="DIMGRAY">
+         <font>
+            <Font name="Dyuthi" size="19.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
