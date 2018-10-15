@@ -19,7 +19,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.stage.Stage;
 
-
 public class AppController {
 
     @FXML
@@ -51,12 +50,8 @@ public class AppController {
 
     @FXML
     void initialize() {
-        ChangeUserButton.setOnAction(event -> {
-            ChangeUser("samples/loginWindow.fxml");
-        });
-        ExitButton.setOnAction(event -> {
-            ExitProgramm();
-        });
+        ChangeUserButton.setOnAction(event -> ChangeUser("samples/loginWindow.fxml"));
+        ExitButton.setOnAction(event -> ExitProgramm());
         CalcButton.setOnAction(event -> {
             CalcButton.getScene().getWindow().hide(); // берем поточну сцену, поточне вікно і закриваємо його
             FXMLLoader loader = new FXMLLoader(); // додаємо об'єкт класу FXMLLoader для загрузки іншого вікна
@@ -77,8 +72,9 @@ public class AppController {
                 stage.show(); // показуємо вікно і чекаємо
             }
         });
+        MyAccountButton.setOnAction(event -> ViewMyProfile("samples/MyProfile.fxml"));
     }
-    public void ChangeUser(String window) {
+    private void ChangeUser(String window) {
         SettingsMenu.getScene().getWindow().hide(); // берем поточну сцену, поточне вікно і закриваємо його
         FXMLLoader loader = new FXMLLoader(); // додаємо об'єкт класу FXMLLoader для загрузки іншого вікна
 
@@ -98,8 +94,28 @@ public class AppController {
             stage.show(); // показуємо вікно і чекаємо
         }
     }
-    public void ExitProgramm() {
+    private void ExitProgramm() {
         SettingsMenu.getScene().getWindow().hide();
+    }
+    private void ViewMyProfile(String window) {
+        SettingsMenu.getScene().getWindow().hide(); // берем поточну сцену, поточне вікно і закриваємо його
+        FXMLLoader loader = new FXMLLoader(); // додаємо об'єкт класу FXMLLoader для загрузки іншого вікна
+
+        loader.setLocation(getClass().getResource(window));
+        // вказуємо шлях до файлу вікна, яке збираємось відкрити
+
+        try {
+            loader.load(); // запускаємо вікно
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+
+
+            Parent root = loader.getRoot(); // отримуємо шлях до вікна (хуй знає нашо це робиться)
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root)); // вказуємо шлях до файлу який потрібно підключити
+            stage.show(); // показуємо вікно і чекаємо
+        }
     }
 }
 
