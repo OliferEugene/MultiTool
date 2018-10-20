@@ -59,6 +59,8 @@ public class loginWindowController extends ErrorMaker {
             String loginText = login_field.getText().trim();
             String loginPass = password_field.getText().trim();
 
+            MyProfileController.CurrentUsername = loginText;
+
             if (!loginText.equals("") && !loginPass.equals("")) {
                 loginUser(loginText, loginPass);
                 if (RememberCheckbox.isSelected()) {

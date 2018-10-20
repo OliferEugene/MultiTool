@@ -16,6 +16,15 @@ import java.sql.*;
 public class DatabaseHandler extends Configs{
     Connection dbConnection;
 
+    public static String MyId = null;
+    public static String MyName = null;
+    public static String MyLastname = null;
+    public static String MyUsername = null;
+    public static String MyCountry = null;
+    public static String MyLanguage = null;
+    public static String MyEmail = null;
+    public static String MyGender = null;
+
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
         String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?autoReconnect=true&useSSL=false&serverTimezone=UTC";
 
@@ -101,5 +110,30 @@ public class DatabaseHandler extends Configs{
 
         return resSet;
 
+    }
+
+    public Connection getCurrentUser(String CurrentUser) throws ClassNotFoundException, SQLException {
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        String url = "jdbc:mysql://" + dbHost + ":"+ dbPort + "/"+ dbName + "?autoReconnect=true&useSSL=false&serverTimezone=UTC";
+
+        dbConnection = DriverManager.getConnection(url, dbUser, dbPass);
+
+        PreparedStatement ps = dbConnection.prepareStatement("SELECT * FROM Users WHERE Username = '" + CurrentUser + "'");
+        ResultSet resultSet = ps.executeQuery();
+        while (resultSet.next()) {
+             MyId = resultSet.getString(1);
+             MyName = resultSet.getString(2);
+             MyLastname = resultSet.getString(3);
+             MyUsername = resultSet.getString(4);
+             MyCountry = resultSet.getString(6);
+             MyLanguage = resultSet.getString(7);
+             MyEmail = resultSet.getString(8);
+             MyGender = resultSet.getString(9);
+        }
+
+        dbConnection.close();
+        return dbConnection;
     }
 }

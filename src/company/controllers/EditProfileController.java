@@ -1,7 +1,7 @@
 package company.controllers;
 /*
-Project Task 21 (GUI JavaFx) was created by Eugene Oliferenko
-Class MyProfileController was created in 13:54 15.10.18
+Project Task 21 (GUI JavaFx) was created by Eugene Oliferenko 20.10.18
+Class EditProfileController was created in 19:53 20.10.18
 © 2018 Olifer. All rights reserved. All trademarks are the property of their respective.
 */
 
@@ -19,7 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class MyProfileController {
+public class EditProfileController {
 
     @FXML
     private ResourceBundle resources;
@@ -28,16 +28,13 @@ public class MyProfileController {
     private URL location;
 
     @FXML
-    private Button EditProfileButton;
+    private Button SubmitButton;
 
     @FXML
     private TextField NameField;
 
     @FXML
     private TextField LastNameField;
-
-    @FXML
-    private TextField GenderField;
 
     @FXML
     private TextField CountryField;
@@ -52,49 +49,23 @@ public class MyProfileController {
     private TextField eMailField;
 
     @FXML
-    private TextField UserIDField;
-
-    @FXML
     private Button CancelButton;
 
-    public static String CurrentUsername;
-
+    public static String MyCurrentUsername;
 
     @FXML
     void initialize() {
 
         FillTheFields();
 
-        EditProfileButton.setOnAction(event -> EditProfile());
-        CancelButton.setOnAction(event -> BackToApp());
-
+        CancelButton.setOnAction(event -> BackToProfile());
     }
-    private void BackToApp() {
+
+    private void BackToProfile() {
         CancelButton.getScene().getWindow().hide(); // берем поточну сцену, поточне вікно і закриваємо його
         FXMLLoader loader = new FXMLLoader(); // додаємо об'єкт класу FXMLLoader для загрузки іншого вікна
 
-        loader.setLocation(getClass().getResource("samples/App.fxml"));
-        // вказуємо шлях до файлу вікна, яке збираємось відкрити
-
-        try {
-            loader.load(); // запускаємо вікно
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-
-
-            Parent root = loader.getRoot(); // отримуємо шлях до вікна (хуй знає нашо це робиться)
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root)); // вказуємо шлях до файлу який потрібно підключити
-            stage.show(); // показуємо вікно і чекаємо
-        }
-    }
-
-    private void EditProfile() {
-        EditProfileButton.getScene().getWindow().hide(); // берем поточну сцену, поточне вікно і закриваємо його
-        FXMLLoader loader = new FXMLLoader(); // додаємо об'єкт класу FXMLLoader для загрузки іншого вікна
-
-        loader.setLocation(getClass().getResource("samples/EditProfile.fxml"));
+        loader.setLocation(getClass().getResource("samples/MyProfile.fxml"));
         // вказуємо шлях до файлу вікна, яке збираємось відкрити
 
         try {
@@ -113,23 +84,21 @@ public class MyProfileController {
 
     private void FillTheFields() {
         DatabaseHandler CurrentProfile = new DatabaseHandler();
-        EditProfileController.MyCurrentUsername = CurrentUsername;
         try {
-            CurrentProfile.getCurrentUser(CurrentUsername);
+            CurrentProfile.getCurrentUser(MyCurrentUsername);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        UserIDField.setText(DatabaseHandler.MyId);
         NameField.setText(DatabaseHandler.MyName);
         LastNameField.setText(DatabaseHandler.MyLastname);
         UsernameField.setText(DatabaseHandler.MyUsername);
         CountryField.setText(DatabaseHandler.MyCountry);
         LanguageField.setText(DatabaseHandler.MyLanguage);
         eMailField.setText(DatabaseHandler.MyEmail);
-        GenderField.setText(DatabaseHandler.MyGender);
     }
 }
+
 
