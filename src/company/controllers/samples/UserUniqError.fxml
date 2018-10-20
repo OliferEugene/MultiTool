@@ -11,7 +11,7 @@
                 <Font name="Dyuthi" size="19.0" />
             </font>
         </Label>
-      <Label layoutX="67.0" layoutY="50.0" text="is already exists." textFill="DIMGRAY">
+      <Label layoutX="55.0" layoutY="50.0" text="does already exists." textFill="DIMGRAY">
          <font>
             <Font name="Dyuthi" size="19.0" />
          </font>

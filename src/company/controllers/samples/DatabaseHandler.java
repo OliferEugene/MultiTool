@@ -4,13 +4,11 @@ Project Task 21 (GUI JavaFx) was created by Eugene Oliferenko 29.09.18
 Class DatabaseHandler was created in 11:48 29.09.18
 © 2018 Olifer. All rights reserved. All trademarks are the property of their respective.
 */
-import company.controllers.User;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-import java.io.IOException;
+import company.controllers.EditProfileController;
+import company.controllers.ErrorMaker;
+import company.controllers.User;
+
 import java.sql.*;
 
 public class DatabaseHandler extends Configs{
@@ -36,10 +34,6 @@ public class DatabaseHandler extends Configs{
     }
 
     public void signUpUser(User user) {
-//        String insert = String.format("INSERT INTO%s(%s,%s,%s,%s,%s,%s,%s,%s)VALUES(?,?,?,?,?,?,?,?)",
-//                Const.USER_TABLE, Const.USERS_FIRSTNAME, Const.USERS_LASTNAME, Const.USERS_USERNAME,
-//                Const.USERS_PASSWORD, Const.USERS_COUNTRY, Const.USERS_LANGUAGE, Const.USERS_EMAIL,
-//                Const.USERS_GENDER);
 
         String insert = "INSERT INTO " + Const.USER_TABLE + "(" + Const.USERS_FIRSTNAME + "," + Const.USERS_LASTNAME
                 + "," + Const.USERS_USERNAME + "," + Const.USERS_PASSWORD + "," + Const.USERS_COUNTRY + "," +
@@ -60,32 +54,18 @@ public class DatabaseHandler extends Configs{
             prSt.setString(8, user.getGender());
             prSt.executeUpdate();
         } catch (SQLIntegrityConstraintViolationException e) {
+            ErrorMaker UniqError = new ErrorMaker();
+            UniqError.UserUniqError();
+
             e.printStackTrace();
             System.out.println("User with username " + user.getUserName() + " is already exists.");
 
-            DatabaseHandler UniqError = new DatabaseHandler();
-            UniqError.UserUniqError();
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
-    }
-
-    protected void UserUniqError() {
-        FXMLLoader error = new FXMLLoader();
-
-        error.setLocation(getClass().getResource("UserUniqError.fxml"));
-        try{
-            error.load();
-        } catch(IOException e) {
-            e.printStackTrace();
-        } finally {
-            Parent dir = error.getRoot();
-            Stage first = new Stage();
-            first.setScene(new Scene(dir));
-            first.showAndWait();
         }
     }
 
@@ -136,5 +116,72 @@ public class DatabaseHandler extends Configs{
 
         dbConnection.close();
         return dbConnection;
+    }
+
+    public void getCurrentPass(String CurrentUser) {
+        String CurrentPass = null;
+        try {
+            PreparedStatement ps = getDbConnection().prepareStatement("SELECT Password FROM Users WHERE Username = '" + CurrentUser + "'");
+            ResultSet resultSet = ps.executeQuery();
+            while(resultSet.next()) {
+                CurrentPass = resultSet.getString("Password");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch(ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        EditProfileController.MyCurrentPass = CurrentPass;
+    }
+
+    public void EditUser(String CurrentUsername, String NewName, String NewLastName, String NewUserName,
+                        String NewCountry, String NewEmail, String NewPassword) {
+        String CurrentId = null;
+        try {
+            PreparedStatement ps = getDbConnection().prepareStatement("SELECT * FROM Users WHERE Username = '" + CurrentUsername + "'");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                CurrentId = resultSet.getString("idUsers");
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+        String insertUsername = "UPDATE Users SET Username = '" + NewUserName + "' WHERE idUsers = " + CurrentId;
+        String insertName = "UPDATE Users SET Firstname = '" + NewName + "' WHERE idUsers = " + CurrentId;
+        String insertLastName = "UPDATE Users SET Lastname = '" + NewLastName + "' WHERE idUsers = " + CurrentId;
+        String insertCountry = "UPDATE Users SET Country = '" + NewCountry + "' WHERE idUsers = " + CurrentId;
+        String insertEmail = "UPDATE Users SET Email = '" + NewEmail + "' WHERE idUsers = " + CurrentId;
+        String insertPassword = "UPDATE Users SET Password = '" + NewPassword + "' WHERE idUsers = " + CurrentId;
+
+        try {
+            PreparedStatement prSt1 = getDbConnection().prepareStatement(insertUsername);
+            prSt1.executeUpdate();
+            PreparedStatement prSt2 = getDbConnection().prepareStatement(insertName);
+            prSt2.executeUpdate();
+            PreparedStatement prSt3 = getDbConnection().prepareStatement(insertLastName);
+            prSt3.executeUpdate();
+            PreparedStatement prSt4 = getDbConnection().prepareStatement(insertCountry);
+            prSt4.executeUpdate();
+            PreparedStatement prSt6 = getDbConnection().prepareStatement(insertEmail);
+            prSt6.executeUpdate();
+            PreparedStatement prSt7 = getDbConnection().prepareStatement(insertPassword);
+            prSt7.executeUpdate();
+
+            ErrorMaker changesSaved = new ErrorMaker();
+            changesSaved.ChangesSaved();
+
+        } catch (SQLIntegrityConstraintViolationException e) {
+            ErrorMaker userExists = new ErrorMaker();
+            userExists.UserUniqError();
+            e.printStackTrace();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } catch(ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

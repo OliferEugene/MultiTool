@@ -43,5 +43,51 @@ public class ErrorMaker {
             first.showAndWait();
         }
     }
+    public void EditError() {
+        FXMLLoader error = new FXMLLoader();
+
+        error.setLocation(getClass().getResource("samples/EditError.fxml"));
+        try{
+            error.load();
+        } catch(IOException e) {
+            e.printStackTrace();
+        } finally {
+            Parent dir = error.getRoot();
+            Stage first = new Stage();
+            first.setScene(new Scene(dir));
+            first.showAndWait();
+        }
+    }
+    public void UserUniqError() {
+        FXMLLoader error = new FXMLLoader();
+
+        error.setLocation(getClass().getResource("samples/UserUniqError.fxml"));
+        try{
+            error.load();
+        } catch(IOException e) {
+            e.printStackTrace();
+        } finally {
+            Parent dir = error.getRoot();
+            Stage first = new Stage();
+            first.setScene(new Scene(dir));
+            first.show();
+        }
+    }
+
+    public void ChangesSaved() {
+        FXMLLoader error = new FXMLLoader();
+
+        error.setLocation(getClass().getResource("samples/ChangesSaved.fxml"));
+        try{
+            error.load();
+        } catch(IOException e) {
+            e.printStackTrace();
+        } finally {
+            Parent dir = error.getRoot();
+            Stage first = new Stage();
+            first.setScene(new Scene(dir));
+            first.showAndWait();
+        }
+    }
 
 }

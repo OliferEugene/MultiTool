@@ -10,8 +10,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import company.controllers.samples.DatabaseHandler;
 import javafx.fxml.FXML;
@@ -44,9 +42,6 @@ public class EditProfileController {
     private TextField CountryField;
 
     @FXML
-    private TextField LanguageField;
-
-    @FXML
     private TextField UsernameField;
 
     @FXML
@@ -56,22 +51,62 @@ public class EditProfileController {
     private PasswordField OldPassField;
 
     @FXML
-    private TextField NewPassField;
+    private PasswordField NewPassField;
 
     @FXML
-    private TextField ConfirmPassField;
+    private PasswordField ConfirmPassField;
 
     @FXML
     private Button CancelButton;
-
     public static String MyCurrentUsername;
+
+    public static String MyCurrentPass;
 
     @FXML
     void initialize() {
 
         FillTheFields();
 
+        DatabaseHandler dbHandler1 = new DatabaseHandler();
+        dbHandler1.getCurrentPass(MyCurrentUsername);
+
         CancelButton.setOnAction(event -> BackToProfile());
+
+        SubmitButton.setOnAction(event -> {
+            String NewName = NameField.getText();
+            String NewLastName = LastNameField.getText();
+            String NewUsername = UsernameField.getText();
+            String NewCountry = CountryField.getText();
+            String NewEmail = eMailField.getText();
+
+            String OldPassword = OldPassField.getText();
+            String NewPassword = NewPassField.getText();
+            String ConfirmPass = ConfirmPassField.getText();
+
+            System.out.println(MyCurrentPass);
+
+
+
+            if (MyCurrentPass.equals(OldPassword) & NewPassword.equals(ConfirmPass) & !NewPassword.equals("") & !ConfirmPass.equals("")){
+                DatabaseHandler dbHandler = new DatabaseHandler();
+                dbHandler.EditUser(MyCurrentUsername, NewName, NewLastName, NewUsername, NewCountry,  NewEmail, NewPassword);
+                System.out.println("Var1");
+            } else if (MyCurrentPass.equals(OldPassword) & NewPassword.equals("")) {
+                DatabaseHandler dbHandler = new DatabaseHandler();
+                dbHandler.EditUser(MyCurrentUsername, NewName, NewLastName, NewUsername, NewCountry,  NewEmail, OldPassword);
+                System.out.println("Var2");
+            } else if (!MyCurrentPass.equals(OldPassword)) {
+                ErrorMaker WrongPassword = new ErrorMaker();
+                WrongPassword.EditError();
+                System.out.println("Var3");
+                System.out.println(OldPassword);
+            } else if (MyCurrentPass.equals(OldPassword) & !NewPassword.equals(ConfirmPass)) {
+                ErrorMaker PasswordsDoNotMatch = new ErrorMaker();
+                PasswordsDoNotMatch.SignUpError();
+                System.out.println("Var4");
+            }
+
+        });
     }
 
     private void BackToProfile() {
@@ -109,9 +144,7 @@ public class EditProfileController {
         LastNameField.setText(DatabaseHandler.MyLastname);
         UsernameField.setText(DatabaseHandler.MyUsername);
         CountryField.setText(DatabaseHandler.MyCountry);
-        LanguageField.setText(DatabaseHandler.MyLanguage);
         eMailField.setText(DatabaseHandler.MyEmail);
     }
+
 }
-
-

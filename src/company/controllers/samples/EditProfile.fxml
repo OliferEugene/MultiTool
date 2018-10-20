@@ -44,16 +44,6 @@
                 <Font name="Dyuthi" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="LanguageField" alignment="TOP_CENTER" layoutX="-16.0" layoutY="235.0" style="-fx-border-color: #fafafa;">
-            <font>
-                <Font name="Dyuthi" size="18.0" />
-            </font>
-        </TextField>
-        <Label layoutX="63.0" layoutY="260.0" text="Language" textFill="DIMGRAY">
-            <font>
-                <Font name="Dyuthi" size="18.0" />
-            </font>
-        </Label>
         <TextField fx:id="UsernameField" alignment="TOP_CENTER" layoutX="-11.0" layoutY="130.0" style="-fx-border-color: #fafafa;">
             <font>
                 <Font name="Dyuthi" size="18.0" />
@@ -74,22 +64,22 @@
                 <Font name="Dyuthi" size="18.0" />
             </font>
         </Label>
-      <PasswordField fx:id="OldPassField" layoutX="188.0" layoutY="70.0" prefHeight="43.0" prefWidth="226.0" style="-fx-border-color: #fafafa;" />
+      <PasswordField fx:id="OldPassField" alignment="TOP_CENTER" layoutX="188.0" layoutY="70.0" prefHeight="43.0" prefWidth="226.0" style="-fx-border-color: #fafafa;" />
       <Label layoutX="251.0" layoutY="99.0" text="Old Password" textFill="DIMGRAY">
          <font>
             <Font name="Dyuthi" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="NewPassField" alignment="TOP_CENTER" layoutX="188.0" layoutY="130.0" style="-fx-border-color: #fafafa;">
+      <PasswordField fx:id="NewPassField" alignment="TOP_CENTER" layoutX="188.0" layoutY="130.0" style="-fx-border-color: #fafafa;">
          <font>
             <Font name="Dyuthi" size="18.0" />
          </font>
-      </TextField>
-      <TextField fx:id="ConfirmPassField" alignment="TOP_CENTER" layoutX="188.0" layoutY="180.0" style="-fx-border-color: #fafafa;">
+      </PasswordField>
+      <PasswordField fx:id="ConfirmPassField" alignment="TOP_CENTER" layoutX="188.0" layoutY="180.0" style="-fx-border-color: #fafafa;">
          <font>
             <Font name="Dyuthi" size="18.0" />
          </font>
-      </TextField>
+      </PasswordField>
       <Label layoutX="247.0" layoutY="159.0" text="New Password" textFill="DIMGRAY">
          <font>
             <Font name="Dyuthi" size="18.0" />
