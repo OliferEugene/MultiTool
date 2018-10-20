@@ -10,14 +10,14 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import company.controllers.samples.DatabaseHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class EditProfileController {
 
@@ -47,6 +47,15 @@ public class EditProfileController {
 
     @FXML
     private TextField eMailField;
+
+    @FXML
+    private PasswordField OldPassField;
+
+    @FXML
+    private TextField NewPassField;
+
+    @FXML
+    private TextField ConfirmPassField;
 
     @FXML
     private Button CancelButton;

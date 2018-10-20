@@ -72,6 +72,7 @@ public class DatabaseHandler extends Configs{
             e.printStackTrace();
         }
     }
+
     protected void UserUniqError() {
         FXMLLoader error = new FXMLLoader();
 
