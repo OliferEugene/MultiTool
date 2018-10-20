@@ -64,7 +64,7 @@
                 <Font name="Dyuthi" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="eMailField" alignment="TOP_CENTER" layoutX="188.0" layoutY="15.0" prefHeight="43.0" prefWidth="326.0" style="-fx-border-color: #fafafa;">
+        <TextField fx:id="eMailField" alignment="TOP_CENTER" layoutX="188.0" layoutY="15.0" prefHeight="43.0" prefWidth="280.0" style="-fx-border-color: #fafafa;">
             <font>
                 <Font name="Dyuthi" size="18.0" />
             </font>
