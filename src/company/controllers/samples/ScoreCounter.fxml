@@ -102,6 +102,21 @@
             <TextField fx:id="Player2ScoresTextField" layoutX="208.0" layoutY="208.0" prefHeight="26.0" prefWidth="70.0" visible="false" />
             <TextField fx:id="Player3ScoresTextField" layoutX="319.0" layoutY="208.0" prefHeight="26.0" prefWidth="70.0" visible="false" />
             <TextField fx:id="Player4ScoresTextField" layoutX="438.0" layoutY="208.0" prefHeight="26.0" prefWidth="70.0" visible="false" />
+            <Button fx:id="GoButton" layoutX="508.0" layoutY="182.0" mnemonicParsing="false" text="Go" textFill="DIMGRAY" visible="false">
+               <font>
+                  <Font name="Dyuthi" size="22.0" />
+               </font>
+            </Button>
+            <Label fx:id="PlayerWonLabel" layoutX="195.0" layoutY="158.0" text="Player" textFill="DIMGRAY">
+               <font>
+                  <Font name="Dyuthi" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="WonLabel" layoutX="304.0" layoutY="159.0" text="виграв" textFill="DIMGRAY">
+               <font>
+                  <Font name="Dyuthi" size="28.0" />
+               </font>
+            </Label>
          </children>
         </AnchorPane>
         <Label layoutX="231.0" layoutY="5.0" text="Multitool" textFill="#fafafa">

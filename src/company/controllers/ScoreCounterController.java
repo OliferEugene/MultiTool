@@ -18,8 +18,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
-
 public class ScoreCounterController {
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
 
     @FXML
     private Button twoPlayersButton;
@@ -103,34 +108,57 @@ public class ScoreCounterController {
     private TextField Player4ScoresTextField;
 
     @FXML
+    private Button GoButton;
+
+    @FXML
+    private Label PlayerWonLabel;
+
+    @FXML
+    private Label WonLabel;
+
+    @FXML
     private Button CancelButton;
 
     int PlayersNumber = 0;
 
-    String name = null;
-    int intScore = 0;
-    String stringScore = "0";
-
-    int ScoresInThisRound = 0;
-
-    int intRound = 1;
-    String stringRound = null;
-
     boolean NumberOfPlayersChoosen =false;
     boolean NamesEntered = false;
+    boolean go = false;
+    boolean GameOver = false;
 
-    ScoreCounterController Player1 = new ScoreCounterController();
-    ScoreCounterController Player2 = new ScoreCounterController();
-    ScoreCounterController Player3 = new ScoreCounterController();
-    ScoreCounterController Player4 = new ScoreCounterController();
+    public String name1 = null;
+    public String name2 = null;
+    public String name3 = null;
+    public String name4 = null;
+
+    public int intScore1 = 0;
+    public int intScore2 = 0;
+    public int intScore3 = 0;
+    public int intScore4 = 0;
+
+    public String stringScore1 = "0";
+    public String stringScore2 = "0";
+    public String stringScore3 = "0";
+    public String stringScore4 = "0";
+
+    public int ScoresInThisRound1 = 0;
+    public int ScoresInThisRound2 = 0;
+    public int ScoresInThisRound3 = 0;
+    public int ScoresInThisRound4 = 0;
+
+    public int intRound = 1;
+    public String stringRound = null;
 
     @FXML
     void initialize() {
 
-        Player1.intScore = 0;
-        Player2.intScore = 0;
-        Player3.intScore = 0;
-        Player4.intScore = 0;
+        intScore1 = 0;
+        intScore2 = 0;
+        intScore3 = 0;
+        intScore4 = 0;
+
+        PlayerWonLabel.setVisible(false);
+        WonLabel.setVisible(false);
 
         CancelButton.setOnAction(event -> CancelButton());
 
@@ -141,15 +169,17 @@ public class ScoreCounterController {
         SubmitButton.setOnAction(event -> {
             if (NumberOfPlayersChoosen == false) {
                 SubmitButton();
-            } else {
+            } else if (NamesEntered == false){
                 StartButton();
             }
-            if (NamesEntered == true) {
+            if ((NamesEntered == true) & (go == true) & (GameOver == false)) {
                 RoundButton();
             }
         });
 
-        Player1Name.setOnAction(event ->  Player1Label.setText(Player1Name.getText()));
+        GoButton.setOnAction(event -> go = true);
+
+        Player1Name.setOnAction(event -> Player1Label.setText(Player1Name.getText()));
         Player2Name.setOnAction(event -> Player2Label.setText(Player2Name.getText()));
         Player3Name.setOnAction(event -> Player3Label.setText(Player3Name.getText()));
         Player4Name.setOnAction(event -> Player4Label.setText(Player4Name.getText()));
@@ -264,6 +294,8 @@ public class ScoreCounterController {
         Player3Name.setVisible(false);
         Player4Name.setVisible(false);
 
+        GoButton.setVisible(true);
+
         ScoresLabel.setVisible(true);
 
         if (PlayersNumber == 2) {
@@ -273,8 +305,8 @@ public class ScoreCounterController {
             Player1ScoresTextField.setVisible(true);
             Player2ScoresTextField.setVisible(true);
 
-            Player1.name = Player1Label.getText();
-            Player2.name = Player1Label.getText();
+            name1 = Player1Label.getText();
+            name2 = Player2Label.getText();
 
         } else if (PlayersNumber == 3) {
             Player1ScoresLabel.setVisible(true);
@@ -285,9 +317,9 @@ public class ScoreCounterController {
             Player2ScoresTextField.setVisible(true);
             Player3ScoresTextField.setVisible(true);
 
-            Player1.name = Player1Label.getText();
-            Player2.name = Player1Label.getText();
-            Player3.name = Player1Label.getText();
+            name1 = Player1Label.getText();
+            name2 = Player2Label.getText();
+            name3 = Player3Label.getText();
         } else if (PlayersNumber == 4) {
             Player1ScoresLabel.setVisible(true);
             Player2ScoresLabel.setVisible(true);
@@ -299,10 +331,10 @@ public class ScoreCounterController {
             Player3ScoresTextField.setVisible(true);
             Player4ScoresTextField.setVisible(true);
 
-            Player1.name = Player1Label.getText();
-            Player2.name = Player1Label.getText();
-            Player3.name = Player1Label.getText();
-            Player4.name = Player1Label.getText();
+            name1 = Player1Label.getText();
+            name2 = Player2Label.getText();
+            name3 = Player3Label.getText();
+            name4 = Player4Label.getText();
         }
 
         RoundLabel.setVisible(true);
@@ -319,24 +351,87 @@ public class ScoreCounterController {
         stringRound = Integer.toString(intRound);
         RoundNumberLabel.setText(stringRound);
 
-        Player1.stringScore = Player1ScoresTextField.getText();
-        Player2.stringScore = Player1ScoresTextField.getText();
-        Player3.stringScore = Player1ScoresTextField.getText();
-        Player4.stringScore = Player1ScoresTextField.getText();
+        if(PlayersNumber == 2) {
+            stringScore1 = Player1ScoresTextField.getText();
+            stringScore2 = Player2ScoresTextField.getText();
 
-        Player1.ScoresInThisRound = Integer.parseInt(Player1.stringScore);
-        Player2.ScoresInThisRound = Integer.parseInt(Player1.stringScore);
-        Player3.ScoresInThisRound = Integer.parseInt(Player1.stringScore);
-        Player4.ScoresInThisRound = Integer.parseInt(Player1.stringScore);
+            ScoresInThisRound1 = Integer.parseInt(stringScore1);
+            ScoresInThisRound2 = Integer.parseInt(stringScore2);
 
-        Player1.intScore += Player1.ScoresInThisRound;
-        Player2.intScore += Player1.ScoresInThisRound;
-        Player3.intScore += Player1.ScoresInThisRound;
-        Player4.intScore += Player1.ScoresInThisRound;
+            intScore1 += ScoresInThisRound1;
+            intScore2 += ScoresInThisRound2;
 
-        Player1ScoresLabel.setText(Integer.toString(Player1.intScore));
-        Player2ScoresLabel.setText(Integer.toString(Player2.intScore));
-        Player3ScoresLabel.setText(Integer.toString(Player3.intScore));
-        Player4ScoresLabel.setText(Integer.toString(Player4.intScore));
+            stringScore1 = Integer.toString(intScore1);
+            stringScore2 = Integer.toString(intScore2);
+
+            Player1ScoresLabel.setText(stringScore1);
+            Player2ScoresLabel.setText(stringScore2);
+        } else if(PlayersNumber == 3) {
+            stringScore1 = Player1ScoresTextField.getText();
+            stringScore2 = Player2ScoresTextField.getText();
+            stringScore3 = Player3ScoresTextField.getText();
+
+            ScoresInThisRound1 = Integer.parseInt(stringScore1);
+            ScoresInThisRound2 = Integer.parseInt(stringScore2);
+            ScoresInThisRound3 = Integer.parseInt(stringScore3);
+
+            intScore1 += ScoresInThisRound1;
+            intScore2 += ScoresInThisRound2;
+            intScore3 += ScoresInThisRound3;
+
+            stringScore1 = Integer.toString(intScore1);
+            stringScore2 = Integer.toString(intScore2);
+            stringScore3 = Integer.toString(intScore3);
+
+            Player1ScoresLabel.setText(stringScore1);
+            Player2ScoresLabel.setText(stringScore2);
+            Player3ScoresLabel.setText(stringScore3);
+        } else if (PlayersNumber == 4) {
+            stringScore1 = Player1ScoresTextField.getText();
+            stringScore2 = Player2ScoresTextField.getText();
+            stringScore3 = Player3ScoresTextField.getText();
+            stringScore4 = Player4ScoresTextField.getText();
+
+            ScoresInThisRound1 = Integer.parseInt(stringScore1);
+            ScoresInThisRound2 = Integer.parseInt(stringScore2);
+            ScoresInThisRound3 = Integer.parseInt(stringScore3);
+            ScoresInThisRound4 = Integer.parseInt(stringScore4);
+
+            intScore1 += ScoresInThisRound1;
+            intScore2 += ScoresInThisRound2;
+            intScore3 += ScoresInThisRound3;
+            intScore4 += ScoresInThisRound4;
+
+            stringScore1 = Integer.toString(intScore1);
+            stringScore2 = Integer.toString(intScore2);
+            stringScore3 = Integer.toString(intScore3);
+            stringScore4 = Integer.toString(intScore4);
+
+            Player1ScoresLabel.setText(stringScore1);
+            Player2ScoresLabel.setText(stringScore2);
+            Player3ScoresLabel.setText(stringScore3);
+            Player4ScoresLabel.setText(stringScore4);
+        }
+        if(intScore1 >= 1000) {
+            PlayerWonLabel.setText(name1);
+            PlayerWonLabel.setVisible(true);
+            WonLabel.setVisible(true);
+            GameOver = true;
+        } else if(intScore2 >= 1000) {
+            PlayerWonLabel.setText(name2);
+            PlayerWonLabel.setVisible(true);
+            WonLabel.setVisible(true);
+            GameOver = true;
+        } else if(intScore3 >= 1000) {
+            PlayerWonLabel.setText(name3);
+            PlayerWonLabel.setVisible(true);
+            WonLabel.setVisible(true);
+            GameOver = true;
+        } else if(intScore4 >= 1000) {
+            PlayerWonLabel.setText(name4);
+            PlayerWonLabel.setVisible(true);
+            WonLabel.setVisible(true);
+            GameOver = true;
+        }
     }
 }

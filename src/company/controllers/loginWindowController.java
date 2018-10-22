@@ -166,7 +166,7 @@ public class loginWindowController extends ErrorMaker {
             Parent root = loader.getRoot(); // отримуємо шлях до вікна (хуй знає нашо це робиться)
             Stage stage = new Stage();
             stage.setScene(new Scene(root)); // вказуємо шлях до файлу який потрібно підключити
-            stage.showAndWait(); // показуємо вікно і чекаємо
+            stage.show(); // показуємо вікно і чекаємо
         }
     }
 

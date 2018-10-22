@@ -759,5 +759,4 @@ public class CalcToolController {
 
 }
 
-//TODO: розібратися з логарифмами
-//TODO: придумати як застосовувати дужки
+//TODO: додати CancelButton

@@ -79,22 +79,23 @@ public class AppController {
         });
         ScoreCounterButton.setOnAction(event -> {
             ScoreCounterButton.getScene().getWindow().hide(); // берем поточну сцену, поточне вікно і закриваємо його
-            FXMLLoader loader = new FXMLLoader(); // додаємо об'єкт класу FXMLLoader для загрузки іншого вікна
+            FXMLLoader loader1 = new FXMLLoader(); // додаємо об'єкт класу FXMLLoader для загрузки іншого вікна
 
-            loader.setLocation(getClass().getResource("samples/ScoreCounter.fxml"));
+            loader1.setLocation(getClass().getResource("samples/ScoreCounter.fxml"));
             // вказуємо шлях до файлу вікна, яке збираємось відкрити
 
             try {
-                loader.load(); // запускаємо вікно
+                loader1.load(); // запускаємо вікно
+                Parent root1 = loader1.getRoot(); // отримуємо шлях до вікна (хуй знає нашо це робиться)
+                Stage stage1 = new Stage();
+                stage1.setScene(new Scene(root1)); // вказуємо шлях до файлу який потрібно підключити
+                stage1.show(); // показуємо вікно і чекаємо
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
 
 
-                Parent root = loader.getRoot(); // отримуємо шлях до вікна (хуй знає нашо це робиться)
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root)); // вказуємо шлях до файлу який потрібно підключити
-                stage.show(); // показуємо вікно і чекаємо
+
             }
         });
 
