@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 
 public class AppController {
 
+
     @FXML
     private ResourceBundle resources;
 
@@ -31,10 +32,13 @@ public class AppController {
     private Button CalcButton;
 
     @FXML
-    private Button ReminderButton;
+    private Button MatrixCalcButton;
 
     @FXML
-    private Button MultitoolButton;
+    private Button ScoreCounterButton;
+
+    @FXML
+    private Button ComingSoon;
 
     @FXML
     private SplitMenuButton SettingsMenu;
@@ -52,6 +56,7 @@ public class AppController {
     void initialize() {
         ChangeUserButton.setOnAction(event -> ChangeUser("samples/loginWindow.fxml"));
         ExitButton.setOnAction(event -> ExitProgramm());
+
         CalcButton.setOnAction(event -> {
             CalcButton.getScene().getWindow().hide(); // берем поточну сцену, поточне вікно і закриваємо його
             FXMLLoader loader = new FXMLLoader(); // додаємо об'єкт класу FXMLLoader для загрузки іншого вікна
@@ -72,6 +77,27 @@ public class AppController {
                 stage.show(); // показуємо вікно і чекаємо
             }
         });
+        ScoreCounterButton.setOnAction(event -> {
+            ScoreCounterButton.getScene().getWindow().hide(); // берем поточну сцену, поточне вікно і закриваємо його
+            FXMLLoader loader = new FXMLLoader(); // додаємо об'єкт класу FXMLLoader для загрузки іншого вікна
+
+            loader.setLocation(getClass().getResource("samples/ScoreCounter.fxml"));
+            // вказуємо шлях до файлу вікна, яке збираємось відкрити
+
+            try {
+                loader.load(); // запускаємо вікно
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+
+
+                Parent root = loader.getRoot(); // отримуємо шлях до вікна (хуй знає нашо це робиться)
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root)); // вказуємо шлях до файлу який потрібно підключити
+                stage.show(); // показуємо вікно і чекаємо
+            }
+        });
+
         MyAccountButton.setOnAction(event -> ViewMyProfile("samples/MyProfile.fxml"));
     }
     private void ChangeUser(String window) {
