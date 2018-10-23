@@ -1,10 +1,16 @@
 package company.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 import static java.lang.Math.*;
 
 
@@ -12,74 +18,112 @@ public class CalcToolController {
 
     @FXML
     private ResourceBundle resources;
+
     @FXML
     private URL location;
+
     @FXML
     private Label ResultTextBlock;
+
     @FXML
     private Label ActionTextBlock;
+
     @FXML
     private Button backspaceButton;
+
     @FXML
     private Button zeroButton;
+
     @FXML
     private Button enterButton;
+
     @FXML
     private Button sevenButton;
+
     @FXML
     private Button eightButton;
+
     @FXML
     private Button nineButton;
+
     @FXML
     private Button fourButton;
+
     @FXML
     private Button fiveButton;
+
     @FXML
     private Button sixButton;
+
     @FXML
     private Button oneButton;
+
     @FXML
     private Button twoButton;
+
     @FXML
     private Button threeButton;
+
     @FXML
     private Button clearButton;
+
     @FXML
     private Button plusButton;
+
     @FXML
     private Button minusButton;
+
     @FXML
     private Button multipleButton;
+
     @FXML
     private Button divideButton;
+
     @FXML
     private Button percentButton;
+
     @FXML
     private Button absButton;
+
     @FXML
     private Button leftBrecketButton;
+
     @FXML
     private Button rightBrecketButton;
+
     @FXML
     private Button degreeButton;
+
     @FXML
     private Button sqrtButton;
+
     @FXML
     private Button sinusButton;
+
     @FXML
     private Button cosinusButton;
+
     @FXML
     private Button tangesButton;
+
     @FXML
     private Button lnButton;
+
     @FXML
     private Button logButton;
+
     @FXML
     private Button PButton;
+
     @FXML
     private Button dotButton;
+
     @FXML
     private Label PasteActionTextBlock;
+
+    @FXML
+    private Button CancelButton;
+
 
     private String ActionText;
     private String PasteActionText = null;
@@ -109,6 +153,8 @@ public class CalcToolController {
 
         ActionText = "0";
         System.out.println(ActionText);
+
+        CancelButton.setOnAction(event -> BackToApp());
 
         oneButton.setOnAction(event -> {
             if (ActionText == "0") {
@@ -757,6 +803,25 @@ public class CalcToolController {
         return result;
     } // Doesn't work.
 
-}
+    private void BackToApp() {
+        CancelButton.getScene().getWindow().hide(); // берем поточну сцену, поточне вікно і закриваємо його
+        FXMLLoader loader = new FXMLLoader(); // додаємо об'єкт класу FXMLLoader для загрузки іншого вікна
 
-//TODO: додати CancelButton
+        loader.setLocation(getClass().getResource("samples/App.fxml"));
+        // вказуємо шлях до файлу вікна, яке збираємось відкрити
+
+        try {
+            loader.load(); // запускаємо вікно
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+
+
+            Parent root = loader.getRoot(); // отримуємо шлях до вікна (хуй знає нашо це робиться)
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root)); // вказуємо шлях до файлу який потрібно підключити
+            stage.show(); // показуємо вікно і чекаємо
+        }
+    }
+
+}

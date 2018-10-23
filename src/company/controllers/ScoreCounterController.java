@@ -8,6 +8,8 @@ Class ScoreCounterController was created in 19:01 22.10.18
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import company.animations.Shake;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -174,10 +176,24 @@ public class ScoreCounterController {
             }
             if ((NamesEntered == true) & (go == true) & (GameOver == false)) {
                 RoundButton();
+
+                Shake Player1ScoresLabelAnim = new Shake(Player1ScoresLabel);
+                Shake Player2ScoresLabelAnim = new Shake(Player2ScoresLabel);
+                Shake Player3ScoresLabelAnim = new Shake(Player3ScoresLabel);
+                Shake Player4ScoresLabelAnim = new Shake(Player4ScoresLabel);
+                Player1ScoresLabelAnim.playAnim();
+                Player2ScoresLabelAnim.playAnim();
+                Player3ScoresLabelAnim.playAnim();
+                Player4ScoresLabelAnim.playAnim();
+
+                Player1ScoresTextField.setText("");
+                Player2ScoresTextField.setText("");
+                Player3ScoresTextField.setText("");
+                Player4ScoresTextField.setText("");
             }
         });
 
-        GoButton.setOnAction(event -> go = true);
+        GoButton.setOnAction(event -> goButton());
 
         Player1Name.setOnAction(event -> Player1Label.setText(Player1Name.getText()));
         Player2Name.setOnAction(event -> Player2Label.setText(Player2Name.getText()));
@@ -204,6 +220,11 @@ public class ScoreCounterController {
             stage.setScene(new Scene(root)); // вказуємо шлях до файлу який потрібно підключити
             stage.show(); // показуємо вікно і чекаємо
         }
+    }
+
+    private void goButton() {
+        go = true;
+        GoButton.setVisible(false);
     }
 
     private void TwoPlayersButton() {
@@ -411,6 +432,7 @@ public class ScoreCounterController {
             Player2ScoresLabel.setText(stringScore2);
             Player3ScoresLabel.setText(stringScore3);
             Player4ScoresLabel.setText(stringScore4);
+
         }
         if(intScore1 >= 1000) {
             PlayerWonLabel.setText(name1);

@@ -8,10 +8,9 @@ import javafx.stage.Stage;
 
 /*
 Created 28.09.2018
-Build #203 14.10.2018
-2037 lines 14.10.2018
+Build #315 23.10.2018
+3568 lines 23.10.2018
  */
-// test
 
 public class Main extends Application {
 
@@ -28,3 +27,8 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+//TODO: додати калькулятор матриць
+//TODO: додади адмінку
+//TODO: додади мови
+//TODO: додати функціонал вікну Settings

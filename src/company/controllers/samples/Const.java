@@ -18,4 +18,3 @@ public class Const {
     public static final String USERS_EMAIL = "Email";
     public static final String USERS_GENDER = "Gender";
 }
-//TODO: можливо тут шота не працює
